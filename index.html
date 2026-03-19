@@ -423,6 +423,137 @@ h1 span { color: var(--accent); }
 .tag-current { background: var(--accent); color: #000; }
 .tag-base { background: var(--yellow-dim); color: var(--yellow); border: 1px solid rgba(251,191,36,0.2); }
 
+/* JUMP BUTTON */
+.jump-btn-wrap {
+  text-align: center;
+  margin: 0.5rem 0 1.5rem;
+}
+.jump-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  border-radius: 20px;
+  padding: 0.4rem 1.25rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: all 0.2s;
+}
+.jump-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* FULL CALENDAR */
+.calendar-section {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.calendar-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+.calendar-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-bottom: 1.5rem;
+}
+.cal-months-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+@media (max-width: 800px) {
+  .cal-months-grid { grid-template-columns: 1fr; }
+}
+.cal-month {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.cal-month-header {
+  padding: 0.6rem 1rem;
+  background: rgba(255,255,255,0.02);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cal-month-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+}
+.cal-month-miles {
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+.cal-dow-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: rgba(0,0,0,0.15);
+  border-bottom: 1px solid var(--border);
+}
+.cal-dow {
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  text-align: center;
+  padding: 0.35rem 0;
+  opacity: 0.5;
+}
+.cal-cells {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.cal-cell {
+  min-height: 64px;
+  padding: 0.3rem 0.2rem;
+  border-right: 1px solid rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  position: relative;
+  transition: background 0.15s;
+  overflow: hidden;
+}
+.cal-cell.has-workout { cursor: pointer; }
+.cal-cell.has-workout:hover { background: rgba(255,255,255,0.04); }
+.cal-cell.outside-month { background: rgba(0,0,0,0.25); min-height: 64px; }
+.cal-cell.today { background: rgba(255,107,61,0.07); box-shadow: inset 0 0 0 1px rgba(255,107,61,0.2); }
+.cal-cell.is-done { opacity: 0.45; }
+.cal-day-num { font-size: 0.6rem; font-weight: 600; color: var(--text-dim); line-height: 1; margin-bottom: 0.18rem; }
+.cal-cell.today .cal-day-num { color: var(--accent); font-weight: 700; }
+.cal-mini-badge {
+  font-size: 0.4rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.08rem 0.18rem;
+  border-radius: 3px;
+  display: block;
+  width: fit-content;
+  margin-bottom: 0.12rem;
+}
+.cal-mini-badge.run   { background: var(--green-dim);        color: var(--green); }
+.cal-mini-badge.pace  { background: var(--blue-dim);         color: var(--blue); }
+.cal-mini-badge.long  { background: var(--purple-dim);       color: var(--purple); }
+.cal-mini-badge.cross { background: var(--yellow-dim);       color: var(--yellow); }
+.cal-mini-badge.rest  { background: var(--rest-dim);         color: var(--rest-color); }
+.cal-mini-badge.race  { background: rgba(255,107,61,0.15);   color: var(--accent); }
+.cal-dist { font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; line-height: 1; color: var(--text); }
+.cal-unit { font-size: 0.38rem; color: var(--text-dim); }
+.cal-check { position: absolute; top: 2px; right: 3px; font-size: 0.55rem; color: var(--green); font-weight: 700; }
+.cal-special { font-size: 0.42rem; font-weight: 700; color: var(--pink); margin-top: 0.15rem; line-height: 1.2; }
+
 footer {
   text-align: center;
   margin-top: 3rem;
@@ -472,6 +603,10 @@ footer p strong { color: var(--text); }
 
   <div class="stats-row" id="stats-row"></div>
 
+  <div class="jump-btn-wrap" id="jump-btn-wrap" style="display:none">
+    <button class="jump-btn" id="jump-to-week-btn" onclick="scrollToCurrentWeek()">↓ Jump to Current Week</button>
+  </div>
+
   <div class="legend">
     <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Easy Run</div>
     <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div> Pace Run</div>
@@ -482,6 +617,12 @@ footer p strong { color: var(--text); }
   </div>
 
   <div id="weeks-container"></div>
+
+  <div class="calendar-section">
+    <div class="calendar-title">Full Training Calendar</div>
+    <p class="calendar-subtitle">Click any workout to mark it complete · April – August 2026</p>
+    <div id="calendar-container"></div>
+  </div>
 
   <footer>
     <p>Based on <strong>Hal Higdon's Intermediate 1 Half Marathon Plan</strong> with a 4-week base building phase</p>
@@ -677,6 +818,7 @@ function toggleDay(key) {
   saveState();
   renderWeeks();
   renderStats();
+  renderCalendar();
 }
 
 function getWeekStartDate(wi) {
@@ -843,6 +985,7 @@ function renderWeeks() {
     const isBase = wk.phase === 'base';
     const card = document.createElement('div');
     card.className = `week-card${isCur?' current-week':''}${isBase?' base-week':''}${isCur?' open':''}`;
+    if (isCur) card.id = 'current-week-card';
 
     const tags = [];
     if (isCur) tags.push('<span class="tag tag-current">CURRENT</span>');
@@ -895,9 +1038,132 @@ function renderWeeks() {
   });
 }
 
+function renderJumpButton() {
+  const wrap = document.getElementById('jump-btn-wrap');
+  if (!wrap) return;
+  const cw = getCurrentWeekIndex();
+  if (cw >= 0 && cw < 16) {
+    wrap.style.display = 'block';
+    document.getElementById('jump-to-week-btn').textContent = `↓ Jump to Week ${cw + 1}`;
+  } else {
+    wrap.style.display = 'none';
+  }
+}
+
+function scrollToCurrentWeek() {
+  const el = document.getElementById('current-week-card');
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function renderCalendar() {
+  const cal = document.getElementById('calendar-container');
+  if (!cal) return;
+  const now = new Date();
+  const months = [
+    { year: 2026, month: 3, name: 'April' },
+    { year: 2026, month: 4, name: 'May' },
+    { year: 2026, month: 5, name: 'June' },
+    { year: 2026, month: 6, name: 'July' },
+    { year: 2026, month: 7, name: 'August' },
+  ];
+  const dowLabels = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+  function getWorkoutForDate(year, month, day) {
+    const date = new Date(year, month, day);
+    const planStart = new Date(PLAN_START.getFullYear(), PLAN_START.getMonth(), PLAN_START.getDate());
+    const diff = Math.round((date - planStart) / 86400000);
+    if (diff < 0 || diff >= 112) return null;
+    const wi = Math.floor(diff / 7);
+    const di = diff % 7;
+    return { workout: buildDays(weeks[wi])[di], wi, di };
+  }
+
+  let html = '<div class="cal-months-grid">';
+
+  months.forEach(({ year, month, name }) => {
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const startDow = firstDay.getDay();
+    const daysInMonth = lastDay.getDate();
+
+    let monthMiles = 0;
+    for (let d = 1; d <= daysInMonth; d++) {
+      const wd = getWorkoutForDate(year, month, d);
+      if (wd) monthMiles += wd.workout.mi || 0;
+    }
+
+    html += `<div class="cal-month">
+      <div class="cal-month-header">
+        <span class="cal-month-name">${name} ${year}</span>
+        ${monthMiles > 0 ? `<span class="cal-month-miles">${Math.round(monthMiles*10)/10} mi planned</span>` : ''}
+      </div>
+      <div class="cal-dow-row">${dowLabels.map(d => `<div class="cal-dow">${d[0]}</div>`).join('')}</div>
+      <div class="cal-cells">`;
+
+    for (let i = 0; i < startDow; i++) {
+      html += '<div class="cal-cell outside-month"></div>';
+    }
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const isToday = now.getFullYear()===year && now.getMonth()===month && now.getDate()===d;
+      const isWedding = month===7 && d===22;
+      const wd = getWorkoutForDate(year, month, d);
+
+      let classes = 'cal-cell';
+      if (isToday) classes += ' today';
+
+      let inner = `<div class="cal-day-num">${d}</div>`;
+      let onclick = '';
+
+      if (wd) {
+        const { workout, wi, di } = wd;
+        const key = `${wi}-${di}`;
+        const done = completionState[key];
+        if (done) classes += ' is-done';
+
+        if (workout.type !== 'rest') {
+          classes += ' has-workout';
+          onclick = `toggleDay('${key}')`;
+          const typeLabel = workout.type==='race' ? (workout.label||'Race') :
+                            workout.type==='cross' ? 'Cross' :
+                            workout.type==='long'  ? 'Long'  :
+                            workout.type==='pace'  ? 'Pace'  : 'Run';
+          inner += `<span class="cal-mini-badge ${workout.type}">${typeLabel}</span>`;
+          if (workout.type === 'cross') {
+            inner += `<div class="cal-dist">${workout.crossMin}</div><div class="cal-unit">min</div>`;
+          } else {
+            inner += `<div class="cal-dist">${workout.mi}</div><div class="cal-unit">mi</div>`;
+          }
+          if (done) inner += '<div class="cal-check">✓</div>';
+        } else {
+          inner += `<span class="cal-mini-badge rest">Rest</span>`;
+        }
+      }
+
+      if (isWedding) {
+        inner += `<div class="cal-special">Wedding 💍</div>`;
+      }
+
+      html += `<div class="${classes}"${onclick ? ` onclick="${onclick}"` : ''}>${inner}</div>`;
+    }
+
+    const rem = (startDow + daysInMonth) % 7;
+    if (rem !== 0) {
+      for (let i = rem; i < 7; i++) html += '<div class="cal-cell outside-month"></div>';
+    }
+
+    html += '</div></div>';
+  });
+
+  html += '</div>';
+  cal.innerHTML = html;
+}
+
 renderCountdowns();
 renderStats();
 renderWeeks();
+renderCalendar();
+renderJumpButton();
 setInterval(renderCountdowns, 1000);
 </script>
 </body>
