@@ -1107,6 +1107,7 @@ function renderCalendar() {
     for (let d = 1; d <= daysInMonth; d++) {
       const isToday = now.getFullYear()===year && now.getMonth()===month && now.getDate()===d;
       const isWedding = month===7 && d===22;
+      const isFinals = month===3 && d>=17 && d<=22;
       const wd = getWorkoutForDate(year, month, d);
 
       let classes = 'cal-cell';
@@ -1142,6 +1143,9 @@ function renderCalendar() {
 
       if (isWedding) {
         inner += `<div class="cal-special">Wedding 💍</div>`;
+      }
+      if (isFinals) {
+        inner += `<div class="cal-special" style="color:var(--yellow);">📚 Finals</div>`;
       }
 
       html += `<div class="${classes}"${onclick ? ` onclick="${onclick}"` : ''}>${inner}</div>`;
