@@ -114,8 +114,11 @@ h1 span { color: var(--accent); }
   margin: 2.5rem 0;
 }
 
+.countdowns-wrapper.two-col { grid-template-columns: 1fr 1fr; }
+
 @media (max-width: 800px) {
-  .countdowns-wrapper { grid-template-columns: 1fr; }
+  .countdowns-wrapper,
+  .countdowns-wrapper.two-col { grid-template-columns: 1fr !important; }
 }
 
 .countdown-box {
@@ -867,7 +870,7 @@ function renderCountdowns() {
   const trainDiff = PLAN_START - now;
   if (trainDiff > 0) {
     trainEl.style.display = '';
-    document.querySelector('.countdowns-wrapper').style.gridTemplateColumns = '1fr 1fr 1fr';
+    document.querySelector('.countdowns-wrapper').classList.remove('two-col');
     const d = Math.floor(trainDiff / 86400000);
     const h = Math.floor((trainDiff % 86400000) / 3600000);
     const m = Math.floor((trainDiff % 3600000) / 60000);
@@ -883,7 +886,7 @@ function renderCountdowns() {
       <div class="countdown-sublabel rotating" data-type="train">${trainingCountdownQuips[currentTrainQuipIdx]}</div>`;
   } else {
     trainEl.style.display = 'none';
-    document.querySelector('.countdowns-wrapper').style.gridTemplateColumns = '1fr 1fr';
+    document.querySelector('.countdowns-wrapper').classList.add('two-col');
   }
 
   // Race countdown
