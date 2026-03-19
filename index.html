@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Runaway Bride: Mia Half Marathon Prep</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --card: #13131a;
+  --card-hover: #1a1a24;
+  --border: #2a2a3a;
+  --text: #e8e8ed;
+  --text-dim: #7a7a8e;
+  --accent: #ff6b3d;
+  --accent-glow: rgba(255, 107, 61, 0.15);
+  --green: #34d399;
+  --green-dim: rgba(52, 211, 153, 0.12);
+  --blue: #60a5fa;
+  --blue-dim: rgba(96, 165, 250, 0.12);
+  --yellow: #fbbf24;
+  --yellow-dim: rgba(251, 191, 36, 0.12);
+  --purple: #a78bfa;
+  --purple-dim: rgba(167, 139, 250, 0.12);
+  --rest-color: #4a4a5a;
+  --rest-dim: rgba(74, 74, 90, 0.2);
+  --pink: #f472b6;
+  --pink-dim: rgba(244, 114, 182, 0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+header {
+  text-align: center;
+  padding: 3rem 0 2rem;
+  position: relative;
+}
+
+header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+h1 span { color: var(--accent); }
+
+.subtitle {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+}
+
+.header-quip {
+  color: var(--text-dim);
+  font-size: 0.72rem;
+  font-style: italic;
+  margin-top: 0.5rem;
+  opacity: 0.6;
+}
+
+/* COUNTDOWNS */
+.countdowns-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  margin: 2.5rem 0;
+}
+
+@media (max-width: 800px) {
+  .countdowns-wrapper { grid-template-columns: 1fr; }
+}
+
+.countdown-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+}
+
+.countdown-box.training-start {
+  border-color: rgba(52, 211, 153, 0.3);
+}
+
+.countdown-box.wedding {
+  border-color: rgba(244, 114, 182, 0.3);
+  background: linear-gradient(135deg, var(--card), rgba(244, 114, 182, 0.04));
+}
+
+.countdown-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+
+.countdown-box.training-start .countdown-label { color: var(--green); }
+.countdown-box.wedding .countdown-label { color: var(--pink); }
+
+.countdown-sublabel {
+  font-size: 0.55rem;
+  color: var(--text-dim);
+  opacity: 0.5;
+  font-style: italic;
+  margin-top: 0.4rem;
+  line-height: 1.3;
+  transition: opacity 0.3s ease;
+}
+
+.countdown-grid {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.countdown-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  line-height: 1;
+  color: var(--text);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem;
+  min-width: 42px;
+  text-align: center;
+}
+
+.countdown-unit small {
+  font-size: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-top: 0.25rem;
+}
+
+/* PROGRESS */
+.progress-bar-container { margin: 1.5rem 0 2rem; }
+
+.progress-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.progress-stats span { font-size: 0.75rem; color: var(--text-dim); font-weight: 500; }
+.progress-stats strong { color: var(--text); font-size: 0.85rem; }
+
+.progress-track {
+  height: 6px;
+  background: var(--card);
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #ff9a6b);
+  border-radius: 3px;
+  transition: width 0.6s ease;
+}
+
+/* LEGEND */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.legend-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.75rem; color: var(--text-dim); font-weight: 500; }
+.legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+
+/* STATS */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 0.75rem;
+  text-align: center;
+}
+
+.stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--accent); }
+.stat-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-top: 0.2rem; }
+
+/* PHASE DIVIDERS */
+.phase-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0 1rem;
+}
+
+.phase-divider::before, .phase-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.phase-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.phase-quip {
+  text-align: center;
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  opacity: 0.45;
+  font-style: italic;
+  margin-top: -0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* WEEK CARDS */
+.week-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.week-card:hover { border-color: #3a3a4a; }
+.week-card.current-week { border-color: var(--accent); box-shadow: 0 0 30px var(--accent-glow); }
+.week-card.base-week { border-left: 3px solid var(--yellow); }
+
+.week-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.week-header:hover { background: var(--card-hover); }
+
+.week-title-area { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+
+.week-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  color: var(--accent);
+  letter-spacing: 0.03em;
+}
+
+.week-card.base-week .week-num { color: var(--yellow); }
+
+.week-dates { font-size: 0.78rem; color: var(--text-dim); }
+
+.week-quip {
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  opacity: 0.4;
+  font-style: italic;
+  transition: opacity 0.3s ease;
+}
+
+.week-meta { display: flex; align-items: center; gap: 1rem; }
+.week-miles { font-size: 0.75rem; font-weight: 600; color: var(--text-dim); }
+.week-miles strong { color: var(--text); }
+
+.week-check-count {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  background: rgba(255,255,255,0.04);
+  padding: 0.2rem 0.5rem;
+  border-radius: 20px;
+}
+
+.chevron { color: var(--text-dim); transition: transform 0.3s ease; font-size: 0.8rem; }
+.week-card.open .chevron { transform: rotate(180deg); }
+
+.week-body { display: none; padding: 0 1.25rem 1.25rem; }
+.week-card.open .week-body { display: block; }
+
+.days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem; }
+
+@media (max-width: 700px) {
+  .days-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+.day-cell {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.75rem 0.6rem;
+  text-align: center;
+  position: relative;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.day-cell:hover { background: rgba(255,255,255,0.04); }
+.day-cell.completed { opacity: 0.5; }
+
+.day-cell.completed::after {
+  content: '\2713';
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-size: 0.7rem;
+  color: var(--green);
+  font-weight: 700;
+}
+
+.day-name { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.4rem; }
+
+.day-type-badge {
+  display: inline-block;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  margin-bottom: 0.35rem;
+}
+
+.day-type-badge.run { background: var(--green-dim); color: var(--green); }
+.day-type-badge.pace { background: var(--blue-dim); color: var(--blue); }
+.day-type-badge.long { background: var(--purple-dim); color: var(--purple); }
+.day-type-badge.cross { background: var(--yellow-dim); color: var(--yellow); }
+.day-type-badge.rest { background: var(--rest-dim); color: var(--rest-color); }
+.day-type-badge.race { background: rgba(255,107,61,0.15); color: var(--accent); }
+
+.day-distance { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; line-height: 1.1; color: var(--text); }
+.day-unit { font-size: 0.6rem; color: var(--text-dim); font-weight: 500; }
+
+.tag {
+  display: inline-block;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.12rem 0.4rem;
+  border-radius: 20px;
+}
+
+.tag-current { background: var(--accent); color: #000; }
+.tag-base { background: var(--yellow-dim); color: var(--yellow); border: 1px solid rgba(251,191,36,0.2); }
+
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+footer p { font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.3rem; }
+footer p strong { color: var(--text); }
+
+.footer-fine-print {
+  font-size: 0.58rem;
+  color: var(--text-dim);
+  opacity: 0.35;
+  font-style: italic;
+  margin-top: 1rem;
+  line-height: 1.5;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <div class="eyebrow">Hal Higdon Intermediate 1 + Base Building</div>
+    <h1>Runaway <span>Bride</span></h1>
+    <h1 style="font-size: clamp(1.5rem, 4vw, 2.5rem); margin-top: -0.2rem;">Mia's Half Marathon Prep</h1>
+    <p class="subtitle">16 weeks · April 27 – August 15, 2026</p>
+    <p class="header-quip">Because nothing says "I'm ready to spend forever with you" like showing up to the altar with quads of steel</p>
+  </header>
+
+  <div class="countdowns-wrapper">
+    <div class="countdown-box training-start" id="training-countdown"></div>
+    <div class="countdown-box" id="race-countdown"></div>
+    <div class="countdown-box wedding" id="wedding-countdown"></div>
+  </div>
+
+  <div class="progress-bar-container">
+    <div class="progress-stats">
+      <span>Overall Progress</span>
+      <span><strong id="progress-pct">0%</strong></span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+    </div>
+  </div>
+
+  <div class="stats-row" id="stats-row"></div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> Easy Run</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div> Pace Run</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div> Long Run</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--yellow)"></div> Cross Train</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--rest-color)"></div> Rest</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--accent)"></div> Race Day</div>
+  </div>
+
+  <div id="weeks-container"></div>
+
+  <footer>
+    <p>Based on <strong>Hal Higdon's Intermediate 1 Half Marathon Plan</strong> with a 4-week base building phase</p>
+    <p>Click any workout to mark it complete. Progress saves in your browser.</p>
+    <p style="margin-top:0.5rem; color: var(--pink);">Race the half. Marry the man. Newport Beach Temple. August 22.</p>
+    <p class="footer-fine-print">
+      Disclaimer: Completing this training plan does not guarantee Mason will still say yes.
+      <br>Side effects may include: unsolicited pace updates in the group chat, buying more running shoes than wedding shoes,
+      <br>and telling literally everyone you meet that you're "training for a half."
+      <br>No refunds. No DNFs. No excuses.
+    </p>
+  </footer>
+</div>
+
+<script>
+const PLAN_START = new Date(2026, 3, 27); // April 27
+const RACE_DATE = new Date(2026, 7, 15);  // August 15
+const WEDDING_DATE = new Date(2026, 7, 22, 13, 0, 0); // August 22 at 1 PM
+
+// Race day miles to include in totals
+const RACE_MILES = { '5K': 3.1, '10K': 6.2, 'Half Marathon': 13.1 };
+
+// Rotating quotes per week (big pool, cycles every ~45s)
+const weekQuipPools = [
+  // Week 1
+  ["Baby steps. Literally.", "The journey of 13.1 miles begins with a single awkward jog.", "Mason has no idea what he's marrying into.", "Day 1 energy. Screenshot this feeling because it won't last.", "This week is the free trial. Next week they start charging."],
+  // Week 2
+  ["Still easier than picking a wedding venue.", "You're basically an athlete now. Update the bio.", "Two weeks in and already insufferable about running.", "Mason asked how training's going. She talked for 40 minutes.", "The legs are confused but the spirit is willing."],
+  // Week 3
+  ["Your legs don't know what's coming.", "Pace run this week. Fancy.", "Running at the speed of someone late to a cake tasting.", "Three weeks down. Only thirteen more weeks of complaining.", "The Newport Beach Temple isn't going anywhere. Keep running."],
+  // Week 4
+  ["Mason's not going to outrun you at this rate.", "Last week of base. Savor the low mileage.", "You've been training for a month. Personality change complete.", "Base phase finale. Like a tutorial boss before the real game.", "The couch misses you. Don't look back."],
+  // Week 5
+  ["Welcome to the real plan. No more warmup era.", "Hal Higdon just entered the chat.", "This is where the wedding bod gets forged.", "Week 5. The honeymoon phase of training is over. Ironic.", "Your Sunday rest day is now your entire personality."],
+  // Week 6
+  ["Your knees filed a formal complaint.", "Running more miles than Mason's logged on the wedding to-do list.", "The dress will fit. The dress will fit. The dress will fit.", "If you can survive this week you can survive marriage.", "Six weeks in. Toenails on notice."],
+  // Week 7
+  ["If the shoe fits, run 4 miles in it.", "The mileage is climbing. So is Mason's concern.", "Seven weeks of training. Seven days till you forget why you started.", "You now know the location of every public bathroom on your route.", "Midway through. The running is the easy part. Wedding planning is the ultra."],
+  // Week 8
+  ["Peak mileage is a state of mind. And also your legs.", "Your body is a temple. Newport Beach Temple, specifically.", "Eight weeks in. The group chat only hears about splits now.", "Mason googled 'is it normal for my fiancee to talk about chafing at dinner.'", "The long run is 7 miles. The wedding registry is longer."],
+  // Week 9
+  ["You're running more than Mason runs from commitment.", "Almost double digits on the long run. Almost.", "Your resting heart rate is lower than your patience for wedding RSVPs.", "Nine weeks of training. You could've grown a whole human in this time. Almost.", "The Newport Beach Temple sealing room has AC. That's your reward."],
+  // Week 10
+  ["5K race week. Treat it like a dress rehearsal.", "First race. Don't trip. Save that for the aisle.", "3.1 miles at race pace. Then 13.1 miles of opinions about your time.", "You've been training for this. And by 'this' I mean telling everyone your 5K time.", "Race week. Carb load responsibly. Save the real carb load for the reception."],
+  // Week 11
+  ["This is the part where it gets spicy.", "Nine miles on the long run. That's basically a commute.", "You're now in the 'unsolicited advice to strangers about running shoes' phase.", "Mason is either very proud or very scared. Both is fine.", "The wedding photographer better capture these calves."],
+  // Week 12
+  ["Double digits on the long run. Single digits on your patience.", "10 miles. You could run to Newport Beach Temple from the parking lot 20 times.", "If you can run 10 miles you can handle Mason's family at the reception.", "Week 12. Your GPS watch has more screen time than your phone.", "The playlist is carrying you harder than Mason will over the threshold."],
+  // Week 13
+  ["10K race. The veil before the veil.", "6.2 miles at race pace. Then collapse gracefully.", "Second race. You're basically a serial racer now.", "After this 10K you'll have strong opinions about energy gels.", "Running 6.2 miles for fun. What a time to be alive and engaged."],
+  // Week 14
+  ["Your longest week yet. Your shortest fuse too, probably.", "11 miles on the long run. Just casually.", "You're tapering your social life before you taper your mileage.", "Mason scheduled something during your long run. Mason learned.", "The dress fitting is going to hit different after this week."],
+  // Week 15
+  ["Peak week. This is your Everest. The wedding is your Everest 2.", "12 miles. The farthest you've ever run. Until next week when you add 1.1.", "If you survive this week, the wedding is a victory lap.", "Your legs called. They want a divorce. Tell them to wait a week.", "Peak mileage. Peak emotions. Peak ice cream consumption after the long run."],
+  // Week 16
+  ["Taper week. Do less. Panic more. Race day Saturday.", "The hay is in the barn. Whatever that means.", "All that's left is to show up and not die. Same plan for the wedding.", "13.1 miles on Saturday. Eternity on the 22nd. One thing at a time.", "You trained 16 weeks for this. Mason trained 0 weeks. Seems fair."]
+];
+
+const trainingCountdownQuips = [
+  "Enjoy the couch while you still can",
+  "Last chance to eat pizza guilt-free",
+  "Your legs have filed a preemptive complaint",
+  "The calm before the blisters",
+  "Nap now. You'll need the reserves.",
+  "Mason doesn't know you signed him up for cheering duty yet",
+  "Still time to fake an injury. Just saying.",
+  "The running shoes are watching you from the closet",
+  "Alexa, play 'Eye of the Tiger' on repeat for 16 weeks",
+  "Your future self is already mad at your current self",
+  "The last era of sleeping in on Saturdays",
+  "Hal Higdon is sharpening his pencil",
+  "Your rest days are numbered. Literally. There are 16 of them.",
+  "Pre-training vibes. Cherish this version of your knees."
+];
+
+const raceCountdownQuips = [
+  "13.1 miles between you and brunch",
+  "The finish line has a mimosa with your name on it",
+  "You vs. the road. The road doesn't care about your wedding.",
+  "Running toward the altar. Literally, one week later.",
+  "Your legs were made for this. Your feet have concerns.",
+  "Somewhere out there, a medal is waiting for you",
+  "13.1 reasons to carb load tonight",
+  "The only aisle you need to worry about right now is the starting corral",
+  "Faster than walking down the aisle. Hopefully.",
+  "Mason will be at the finish line. Probably holding a sign. Hopefully.",
+  "One race. Then one wedding. Then one nap. In that order.",
+  "You didn't train 16 weeks to DNF. Or DNS. Or BS.",
+  "Race day is just a long run with better snacks and strangers clapping",
+  "The bib number doesn't matter. The finish line photo does.",
+  "Pro tip: don't sprint the first mile. Save that energy for the bouquet toss."
+];
+
+const phaseQuips = {
+  base: "Getting the legs under you before Hal Higdon personally ruins your weekends",
+  int1: "Now we're cooking. 12 weeks of structured suffering before the happiest day of your life."
+};
+
+// Rotating quote state
+let currentWeekQuipIndices = new Array(16).fill(0);
+let currentTrainQuipIdx = 0;
+let currentRaceQuipIdx = 0;
+
+function rotateQuips() {
+  // Rotate week quips
+  for (let i = 0; i < 16; i++) {
+    currentWeekQuipIndices[i] = (currentWeekQuipIndices[i] + 1) % weekQuipPools[i].length;
+  }
+  // Rotate countdown quips
+  currentTrainQuipIdx = (currentTrainQuipIdx + 1) % trainingCountdownQuips.length;
+  currentRaceQuipIdx = (currentRaceQuipIdx + 1) % raceCountdownQuips.length;
+
+  // Update visible week quips with fade
+  document.querySelectorAll('.week-quip').forEach(el => {
+    const wi = parseInt(el.dataset.week);
+    if (!isNaN(wi) && weekQuipPools[wi]) {
+      el.style.opacity = '0';
+      setTimeout(() => {
+        el.textContent = weekQuipPools[wi][currentWeekQuipIndices[wi]];
+        el.style.opacity = '0.4';
+      }, 300);
+    }
+  });
+
+  // Update countdown sublabels with fade
+  document.querySelectorAll('.countdown-sublabel.rotating').forEach(el => {
+    const type = el.dataset.type;
+    el.style.opacity = '0';
+    setTimeout(() => {
+      if (type === 'train') el.textContent = trainingCountdownQuips[currentTrainQuipIdx];
+      if (type === 'race') el.textContent = raceCountdownQuips[currentRaceQuipIdx];
+      el.style.opacity = '0.5';
+    }, 300);
+  });
+}
+
+// Randomize starting positions
+for (let i = 0; i < 16; i++) {
+  currentWeekQuipIndices[i] = Math.floor(Math.random() * weekQuipPools[i].length);
+}
+currentTrainQuipIdx = Math.floor(Math.random() * trainingCountdownQuips.length);
+currentRaceQuipIdx = Math.floor(Math.random() * raceCountdownQuips.length);
+
+setInterval(rotateQuips, 45000);
+
+const weeks = [
+  // BASE (1-4)
+  { num:1, phase:'base',
+    mon:{mi:3,type:'run'}, tue:{mi:3,type:'run'}, wedCross:25, thu:{mi:3,type:'run'}, friCross:25, sat:{mi:4,type:'long'} },
+  { num:2, phase:'base',
+    mon:{mi:3,type:'run'}, tue:{mi:3.5,type:'run'}, wedCross:30, thu:{mi:3,type:'run'}, friCross:30, sat:{mi:5,type:'long'} },
+  { num:3, phase:'base',
+    mon:{mi:3,type:'run'}, tue:{mi:4,type:'pace'}, wedCross:30, thu:{mi:3,type:'run'}, friCross:30, sat:{mi:5,type:'long'} },
+  { num:4, phase:'base',
+    mon:{mi:3.5,type:'run'}, tue:{mi:4,type:'run'}, wedCross:30, thu:{mi:3.5,type:'run'}, friCross:30, sat:{mi:6,type:'long'} },
+  // INT1 (5-16)
+  { num:5, phase:'int1',
+    mon:{mi:4,type:'run'}, tue:{mi:5,type:'run'}, wedCross:30, thu:{mi:4,type:'run'}, friCross:30, sat:{mi:4,type:'long'} },
+  { num:6, phase:'int1',
+    mon:{mi:3,type:'run'}, tue:{mi:4,type:'pace'}, wedCross:30, thu:{mi:3,type:'run'}, friCross:30, sat:{mi:5,type:'long'} },
+  { num:7, phase:'int1',
+    mon:{mi:4,type:'run'}, tue:{mi:4,type:'run'}, wedCross:40, thu:{mi:4,type:'run'}, friCross:40, sat:{mi:6,type:'long'} },
+  { num:8, phase:'int1',
+    mon:{mi:4,type:'run'}, tue:{mi:5,type:'pace'}, wedCross:40, thu:{mi:4,type:'run'}, friCross:40, sat:{mi:7,type:'long'} },
+  { num:9, phase:'int1',
+    mon:{mi:4,type:'run'}, tue:{mi:6,type:'pace'}, wedCross:40, thu:{mi:4,type:'run'}, friCross:40, sat:{mi:8,type:'long'} },
+  { num:10, phase:'int1',
+    mon:{mi:4,type:'run'}, tue:{mi:6,type:'pace'}, wedCross:50, thu:{mi:4,type:'run'}, friCross:50, sat:{mi:3.1,type:'race',label:'5K Race'} },
+  { num:11, phase:'int1',
+    mon:{mi:5,type:'run'}, tue:{mi:7,type:'run'}, wedCross:40, thu:{mi:5,type:'run'}, friCross:40, sat:{mi:9,type:'long'} },
+  { num:12, phase:'int1',
+    mon:{mi:5,type:'run'}, tue:{mi:7,type:'pace'}, wedCross:50, thu:{mi:5,type:'run'}, friCross:50, sat:{mi:10,type:'long'} },
+  { num:13, phase:'int1',
+    mon:{mi:5,type:'run'}, tue:{mi:8,type:'run'}, wedCross:60, thu:{mi:5,type:'run'}, friCross:60, sat:{mi:6.2,type:'race',label:'10K Race'} },
+  { num:14, phase:'int1',
+    mon:{mi:5,type:'run'}, tue:{mi:8,type:'pace'}, wedCross:50, thu:{mi:5,type:'run'}, friCross:50, sat:{mi:11,type:'long'} },
+  { num:15, phase:'int1',
+    mon:{mi:5,type:'run'}, tue:{mi:6,type:'run'}, wedCross:60, thu:{mi:4,type:'run'}, friCross:60, sat:{mi:12,type:'long'} },
+  { num:16, phase:'int1', raceWeek:true,
+    mon:{mi:4,type:'run'}, tue:{mi:4,type:'pace'}, wedCross:30, thu:{mi:2,type:'run'}, friCross:0, sat:{mi:13.1,type:'race',label:'Half Marathon'} },
+];
+
+let completionState = {};
+try {
+  const saved = localStorage.getItem('hm_training_v3');
+  if (saved) completionState = JSON.parse(saved);
+} catch(e) {}
+
+function saveState() { localStorage.setItem('hm_training_v3', JSON.stringify(completionState)); }
+
+function toggleDay(key) {
+  completionState[key] = !completionState[key];
+  saveState();
+  renderWeeks();
+  renderStats();
+}
+
+function getWeekStartDate(wi) {
+  const d = new Date(PLAN_START);
+  d.setDate(d.getDate() + wi * 7);
+  return d;
+}
+
+function fmt(d) {
+  return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][d.getMonth()] + ' ' + d.getDate();
+}
+
+function getCurrentWeekIndex() {
+  const diff = Math.floor((new Date() - PLAN_START) / 86400000);
+  return diff < 0 ? -1 : Math.floor(diff / 7);
+}
+
+function buildDays(week) {
+  const days = [];
+  days.push({ name:'Mon', mi:week.mon.mi, type:week.mon.type });
+  days.push({ name:'Tue', mi:week.tue.mi, type:week.tue.type });
+  days.push({ name:'Wed', mi:0, type:'cross', crossMin:week.wedCross });
+  days.push({ name:'Thu', mi:week.thu.mi, type:week.thu.type });
+  days.push(week.friCross > 0
+    ? { name:'Fri', mi:0, type:'cross', crossMin:week.friCross }
+    : { name:'Fri', mi:0, type:'rest' });
+  if (week.sat.type === 'race') {
+    days.push({ name:'Sat', mi:week.sat.mi, type:'race', label:week.sat.label });
+  } else {
+    days.push({ name:'Sat', mi:week.sat.mi, type:'long' });
+  }
+  days.push({ name:'Sun', mi:0, type:'rest' });
+  return days;
+}
+
+function weekMiles(week) {
+  let t = week.mon.mi + week.tue.mi + week.thu.mi + week.sat.mi;
+  return Math.round(t * 10) / 10;
+}
+
+function renderCountdowns() {
+  const now = new Date();
+
+  // Training start countdown
+  const trainEl = document.getElementById('training-countdown');
+  const trainDiff = PLAN_START - now;
+  if (trainDiff > 0) {
+    const d = Math.floor(trainDiff / 86400000);
+    const h = Math.floor((trainDiff % 86400000) / 3600000);
+    const m = Math.floor((trainDiff % 3600000) / 60000);
+    const s = Math.floor((trainDiff % 60000) / 1000);
+    trainEl.innerHTML = `
+      <div class="countdown-label">Training Begins · Apr 27</div>
+      <div class="countdown-grid">
+        <div class="countdown-unit"><div class="countdown-num">${d}</div><small>Days</small></div>
+        <div class="countdown-unit"><div class="countdown-num">${h}</div><small>Hrs</small></div>
+        <div class="countdown-unit"><div class="countdown-num">${m}</div><small>Min</small></div>
+        <div class="countdown-unit"><div class="countdown-num">${s}</div><small>Sec</small></div>
+      </div>
+      <div class="countdown-sublabel rotating" data-type="train">${trainingCountdownQuips[currentTrainQuipIdx]}</div>`;
+  } else {
+    trainEl.innerHTML = '<div class="countdown-label" style="color:var(--green);font-size:0.85rem;">Training has begun</div><div class="countdown-sublabel rotating" data-type="train">' + trainingCountdownQuips[currentTrainQuipIdx] + '</div>';
+  }
+
+  // Race countdown
+  const raceEl = document.getElementById('race-countdown');
+  const raceDiff = RACE_DATE - now;
+  if (raceDiff > 0) {
+    const d = Math.floor(raceDiff / 86400000);
+    const h = Math.floor((raceDiff % 86400000) / 3600000);
+    const m = Math.floor((raceDiff % 3600000) / 60000);
+    const s = Math.floor((raceDiff % 60000) / 1000);
+    raceEl.innerHTML = `
+      <div class="countdown-label">Race Day · Aug 15</div>
+      <div class="countdown-grid">
+        <div class="countdown-unit"><div class="countdown-num">${d}</div><small>Days</small></div>
+        <div class="countdown-unit"><div class="countdown-num">${h}</div><small>Hrs</small></div>
+        <div class="countdown-unit"><div class="countdown-num">${m}</div><small>Min</small></div>
+        <div class="countdown-unit"><div class="countdown-num">${s}</div><small>Sec</small></div>
+      </div>
+      <div class="countdown-sublabel rotating" data-type="race">${raceCountdownQuips[currentRaceQuipIdx]}</div>`;
+  } else {
+    raceEl.innerHTML = '<div class="countdown-label" style="color:var(--accent);font-size:0.85rem;">Race Complete!</div>';
+  }
+
+  // Wedding countdown
+  const wedEl = document.getElementById('wedding-countdown');
+  const wedDiff = WEDDING_DATE - now;
+  if (wedDiff > 0) {
+    const d = Math.floor(wedDiff / 86400000);
+    const h = Math.floor((wedDiff % 86400000) / 3600000);
+    const m = Math.floor((wedDiff % 3600000) / 60000);
+    const s = Math.floor((wedDiff % 60000) / 1000);
+    wedEl.innerHTML = `
+      <div class="countdown-label">Wedding Day · Aug 22 at 1 PM</div>
+      <div class="countdown-grid">
+        <div class="countdown-unit"><div class="countdown-num">${d}</div><small>Days</small></div>
+        <div class="countdown-unit"><div class="countdown-num">${h}</div><small>Hrs</small></div>
+        <div class="countdown-unit"><div class="countdown-num">${m}</div><small>Min</small></div>
+        <div class="countdown-unit"><div class="countdown-num">${s}</div><small>Sec</small></div>
+      </div>
+      <div class="countdown-sublabel">Mia's naked debut for Mason</div>`;
+  } else {
+    wedEl.innerHTML = '<div class="countdown-label" style="color:var(--pink);font-size:0.85rem;">Congratulations Mia & Mason!</div>';
+  }
+}
+
+function renderStats() {
+  let totalMi=0, doneMi=0, totalW=0, doneW=0;
+  weeks.forEach((wk, wi) => {
+    buildDays(wk).forEach((day, di) => {
+      if (day.type !== 'rest') {
+        totalW++;
+        if (completionState[`${wi}-${di}`]) { doneW++; doneMi += day.mi || 0; }
+      }
+      totalMi += day.mi || 0;
+    });
+  });
+
+  const weeksLeft = Math.max(0, 16 - Math.max(0, getCurrentWeekIndex() + 1));
+
+  document.getElementById('stats-row').innerHTML = `
+    <div class="stat-card"><div class="stat-value">${Math.round(totalMi*10)/10}</div><div class="stat-label">Total Plan Miles</div></div>
+    <div class="stat-card"><div class="stat-value">${Math.round(doneMi*10)/10}</div><div class="stat-label">Miles Completed</div></div>
+    <div class="stat-card"><div class="stat-value">${doneW}/${totalW}</div><div class="stat-label">Workouts Done</div></div>
+    <div class="stat-card"><div class="stat-value">${weeksLeft}</div><div class="stat-label">Weeks Remaining</div></div>`;
+
+  const pct = totalW > 0 ? Math.round((doneW/totalW)*100) : 0;
+  document.getElementById('progress-pct').textContent = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+function renderWeeks() {
+  const cw = getCurrentWeekIndex();
+  const c = document.getElementById('weeks-container');
+  c.innerHTML = '';
+  let lastPhase = '';
+
+  weeks.forEach((wk, wi) => {
+    if (wk.phase !== lastPhase) {
+      lastPhase = wk.phase;
+      const div = document.createElement('div');
+      div.className = 'phase-divider';
+      div.innerHTML = `<span class="phase-label">${wk.phase === 'base' ? 'Base Building \u00b7 Weeks 1\u20134' : 'Intermediate 1 \u00b7 Weeks 5\u201316'}</span>`;
+      c.appendChild(div);
+
+      const quip = document.createElement('div');
+      quip.className = 'phase-quip';
+      quip.textContent = phaseQuips[wk.phase];
+      c.appendChild(quip);
+    }
+
+    const sd = getWeekStartDate(wi);
+    const ed = new Date(sd); ed.setDate(ed.getDate()+6);
+    const isCur = wi === cw;
+    const days = buildDays(wk);
+    const wm = weekMiles(wk);
+    let wDone=0, wTot=0;
+    days.forEach((d,di) => { if(d.type!=='rest'){wTot++; if(completionState[`${wi}-${di}`])wDone++;} });
+
+    const isBase = wk.phase === 'base';
+    const card = document.createElement('div');
+    card.className = `week-card${isCur?' current-week':''}${isBase?' base-week':''}${isCur?' open':''}`;
+
+    const tags = [];
+    if (isCur) tags.push('<span class="tag tag-current">CURRENT</span>');
+    if (isBase) tags.push('<span class="tag tag-base">BASE</span>');
+    if (wk.raceWeek) tags.push('<span class="tag" style="background:rgba(255,107,61,0.15);color:var(--accent);border:1px solid rgba(255,107,61,0.2);">RACE WEEK</span>');
+
+    card.innerHTML = `
+      <div class="week-header" onclick="this.parentElement.classList.toggle('open')">
+        <div class="week-title-area">
+          <span class="week-num">WEEK ${wk.num}</span>
+          <span class="week-dates">${fmt(sd)} \u2013 ${fmt(ed)}</span>
+          ${tags.join(' ')}
+          <span class="week-quip" data-week="${wi}">${weekQuipPools[wi][currentWeekQuipIndices[wi]]}</span>
+        </div>
+        <div class="week-meta">
+          <span class="week-miles"><strong>${wm}</strong> mi</span>
+          <span class="week-check-count">${wDone}/${wTot}</span>
+          <span class="chevron">\u25BC</span>
+        </div>
+      </div>
+      <div class="week-body"><div class="days-grid">
+        ${days.map((day,di) => {
+          const key=`${wi}-${di}`, done=completionState[key], isRest=day.type==='rest';
+          let badge='', dist='';
+          if(day.type==='race'){
+            badge='<div class="day-type-badge race">Race</div>';
+            dist=`<div class="day-distance">${day.mi}</div><div class="day-unit">miles · ${day.label}</div>`;
+          } else if(day.type==='cross'){
+            badge='<div class="day-type-badge cross">Cross</div>';
+            dist=`<div class="day-distance">${day.crossMin}</div><div class="day-unit">min</div>`;
+          } else if(day.type==='rest'){
+            badge='<div class="day-type-badge rest">Rest</div>';
+            dist='<div class="day-distance" style="font-family:DM Sans;font-size:0.85rem;color:var(--rest-color)">\u2014</div>';
+          } else if(day.type==='long'){
+            badge='<div class="day-type-badge long">Long</div>';
+            dist=`<div class="day-distance">${day.mi}</div><div class="day-unit">miles</div>`;
+          } else if(day.type==='pace'){
+            badge='<div class="day-type-badge pace">Pace</div>';
+            dist=`<div class="day-distance">${day.mi}</div><div class="day-unit">miles</div>`;
+          } else {
+            badge='<div class="day-type-badge run">Run</div>';
+            dist=`<div class="day-distance">${day.mi}</div><div class="day-unit">miles</div>`;
+          }
+          return `<div class="day-cell ${done?'completed':''}" onclick="${isRest?'':`toggleDay('${key}')`}" style="${isRest?'cursor:default':''}">
+            <div class="day-name">${day.name}</div>${badge}${dist}</div>`;
+        }).join('')}
+      </div></div>`;
+
+    c.appendChild(card);
+  });
+}
+
+renderCountdowns();
+renderStats();
+renderWeeks();
+setInterval(renderCountdowns, 1000);
+</script>
+</body>
+</html>
