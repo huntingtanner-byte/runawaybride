@@ -130,6 +130,11 @@ h1 span { color: var(--accent); }
   border-color: rgba(52, 211, 153, 0.3);
 }
 
+.countdown-box.race-day {
+  border-color: rgba(96, 165, 250, 0.3);
+  background: linear-gradient(135deg, var(--card), rgba(96, 165, 250, 0.04));
+}
+
 .countdown-box.wedding {
   border-color: rgba(244, 114, 182, 0.3);
   background: linear-gradient(135deg, var(--card), rgba(244, 114, 182, 0.04));
@@ -146,6 +151,7 @@ h1 span { color: var(--accent); }
 }
 
 .countdown-box.training-start .countdown-label { color: var(--green); }
+.countdown-box.race-day .countdown-label { color: var(--blue); }
 .countdown-box.wedding .countdown-label { color: var(--pink); }
 
 .countdown-sublabel {
@@ -450,7 +456,7 @@ footer p strong { color: var(--text); }
 
   <div class="countdowns-wrapper">
     <div class="countdown-box training-start" id="training-countdown"></div>
-    <div class="countdown-box" id="race-countdown"></div>
+    <div class="countdown-box race-day" id="race-countdown"></div>
     <div class="countdown-box wedding" id="wedding-countdown"></div>
   </div>
 
@@ -714,10 +720,12 @@ function weekMiles(week) {
 function renderCountdowns() {
   const now = new Date();
 
-  // Training start countdown
+  // Training start countdown — hide when training has begun
   const trainEl = document.getElementById('training-countdown');
   const trainDiff = PLAN_START - now;
   if (trainDiff > 0) {
+    trainEl.style.display = '';
+    document.querySelector('.countdowns-wrapper').style.gridTemplateColumns = '1fr 1fr 1fr';
     const d = Math.floor(trainDiff / 86400000);
     const h = Math.floor((trainDiff % 86400000) / 3600000);
     const m = Math.floor((trainDiff % 3600000) / 60000);
@@ -732,7 +740,8 @@ function renderCountdowns() {
       </div>
       <div class="countdown-sublabel rotating" data-type="train">${trainingCountdownQuips[currentTrainQuipIdx]}</div>`;
   } else {
-    trainEl.innerHTML = '<div class="countdown-label" style="color:var(--green);font-size:0.85rem;">Training has begun</div><div class="countdown-sublabel rotating" data-type="train">' + trainingCountdownQuips[currentTrainQuipIdx] + '</div>';
+    trainEl.style.display = 'none';
+    document.querySelector('.countdowns-wrapper').style.gridTemplateColumns = '1fr 1fr';
   }
 
   // Race countdown
